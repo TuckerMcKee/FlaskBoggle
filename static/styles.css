@@ -1,0 +1,24 @@
+.row {
+    display: flex;
+    padding: 1em;
+    text-align: center;
+}
+.letter {
+    width: 2em;
+    height: .8em;
+    font-size: 1.5em;
+}
+
+.time-container {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.statistics {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+
