@@ -31,8 +31,8 @@ async function scoreUpdate(score) {
     const response = await axios({
         url: '/score',
         method: "POST",
-        params: {score: score}
-      });  
+        data: { score: score }
+    });  
     return response.data;
 }
 
@@ -52,11 +52,23 @@ async function guessSubmitHandler(e) {
     }
 } 
 
+// async function sendGuess(guess) {
+//     const response = await axios({
+//         url: '/guess',
+//         method: "POST",
+//         data: new URLSearchParams({ guess: guess }).toString(),
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         }
+//       });
+//     return response.data;
+// }
+
 async function sendGuess(guess) {
     const response = await axios({
         url: '/guess',
         method: "POST",
-        params:{guess: guess}
+        data: { guess: guess }
       });
     return response.data;
 }

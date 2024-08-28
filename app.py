@@ -13,23 +13,22 @@ def game_start():
     """initializes session variables, creates game board"""
     session['board'] = boggle_game.make_board()
     session['high_score'] = 0
-    session['num_games'] = 1
+    session['num_games'] = 0
     return render_template('board.html',board=session['board'])
 
 @app.route('/guess', methods = ["POST"])
 def guess_checker():
     """checks user guess, returns results"""
-    guess = request.args['guess']
+    guess = request.json.get('guess')
     result = boggle_game.check_valid_word(session['board'], guess)
     return jsonify({"result" : result})
 
 @app.route('/score', methods = ["POST"])
 def high_score():
     """when game is finished, updates high score and game number"""
-    score = request.args['score']
-    if int(score) > session['high_score']:
+    score = request.json.get('score')
+    if int(score) > int(session['high_score']):
         session['high_score'] = score
-        
     session['num_games'] += 1
     return jsonify({'num_games':session['num_games'],'high_score' : session['high_score']})
     
